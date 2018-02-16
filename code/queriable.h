@@ -4,10 +4,12 @@
 #include <cstddef>
 
 template<typename T> class Queriable {
+    virtual void doUpdate(size_t i, const T &x) = 0;
+    virtual T doQuery(size_t i) const = 0;
 public:
     virtual ~Queriable() {}
-    virtual void update(size_t i, const T &x) = 0;
-    virtual T query(size_t i) const = 0;
+    void update(size_t i, const T &x) { doUpdate(i,x); }
+    T query(size_t i) const { return doQuery(i); }
 };
 
 #endif

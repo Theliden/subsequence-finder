@@ -6,13 +6,11 @@
 #include <vector>
 
 // A general Fenwick tree that supports prefix maximum queries
-template<typename T> class FenwickTree: public Queriable<T> {
+template<typename T>
+class FenwickTree: public Queriable<T> {
     size_t n;
     std::vector<T> data;
-public:
-    ~FenwickTree() {}
-    FenwickTree(size_t n, const T &init): n(n), data(n + 1, init) {}
-    void update(size_t i, const T &x) override {
+    void doUpdate(size_t i, const T &x) override {
         while(i <= n) {
             if(x > data[i]) {
                 data[i] = x;
@@ -20,7 +18,7 @@ public:
             i += i&-i;
         }
     }
-    T query(size_t i) const override {
+    T doQuery(size_t i) const override {
         T x = data[i];
         i -= i&-i;
         while(i) {
@@ -31,6 +29,9 @@ public:
         }
         return x;
     }
+public:
+    ~FenwickTree() override {}
+    FenwickTree(size_t n, const T &init): n(n), data(n + 1, init) {}
 };
 
 #endif

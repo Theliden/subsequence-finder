@@ -1,6 +1,6 @@
 #include "node.h"
 #include "fenwick_tree.h"
-#include "reverse_fenwick.h"
+#include "reverse.h"
 
 #include <vector>
 #include <algorithm>
@@ -17,7 +17,7 @@ Node::Node(bool downQueries, int n):
         tree = std::make_unique<FenwickTree<T>>(n, std::make_pair(-1, -1));
     }
     else {
-        tree = std::make_unique<ReverseFenwick<T>>(n, std::make_pair(-1, -1));
+        tree = std::make_unique<Reverse<T,FenwickTree>>(n, std::make_pair(-1, -1));
     }
 }
 
