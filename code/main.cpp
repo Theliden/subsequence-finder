@@ -1,7 +1,11 @@
-#include "rollercoaster_finder.h"
-
 #include <iostream>
 #include <algorithm>
+#include <vector>
+
+#include "subsequence_finder.h"
+#include "rollercoaster_finder.h"
+#include "lis_finder.h"
+#include "tester.h"
 
 void printAtIndices(const std::vector<int> is, const std::vector<int> &v) {
     for(auto i:is) std::cout << v[i] << " ";
@@ -47,8 +51,12 @@ double expectedLength(int n, int times, const RollercoasterFinder &rf) {
     return sum / times;
 }
 
-int main()
-{
-    RollercoasterFinder rf;
-    manualTest(rf);
+int main() {
+    std::vector<std::pair<std::string,SubsequenceFinder>> tests{
+        {"lis",LisFinder()},
+        {"rollercoaster",RollercoasterFinder()}};
+    for(auto p:tests) {
+        Tester t(p.first,p.second);
+        if(!t.test()) return 1;
+    }
 }

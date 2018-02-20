@@ -3,7 +3,7 @@
 
 #include "queriable.h"
 
-template<typename T, template<typename T> typename DS>
+template<typename T, template<typename T> class DS>
 class Reverse: public Queriable<T> {
     size_t n;
     DS<T> ds; // the underlying data structure

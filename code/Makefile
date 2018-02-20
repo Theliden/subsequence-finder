@@ -1,8 +1,11 @@
 CXX = g++-5
-CXXFLAGS = -std=c++14 -Wall -MMD -O2
-EXEC = main.out
-OBJECTS = main.o node.o subsequence_finder.o
-DEPENDS = ${OBJECTS:.o=.d}
+CXXFLAGS = -std=c++14 -Wall -Wextra -Wpedantic -MMD -g \
+-O2 -fsanitize=undefined,address
+
+EXEC = main
+SOURCES = $(shell find -name "*.cpp")
+OBJECTS = $(SOURCES:.cpp=.o)
+DEPENDS = ${SOURCES:.cpp=.d}
 
 ${EXEC}: ${OBJECTS}
 	${CXX} ${OBJECTS} ${CXXFLAGS} -o ${EXEC}
