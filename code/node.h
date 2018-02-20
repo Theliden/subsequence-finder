@@ -13,7 +13,7 @@ class Node {
     std::vector<std::pair<int, const Node*> > previous;
     int bestLength;
 public:
-    Node(bool downQueries, int n);
+    Node(bool downQueries, int m);
     void addDependency(const Node &other);
     void prepareChanges(int val);
     void addBaseCase();

@@ -19,7 +19,10 @@ public:
         startNodes(startNodes),
         accepting(accepting) {}
     virtual ~SubsequenceFinder() {}
-    std::vector<int> findIndices(const std::vector<int> &perm) const;
+    std::vector<int> findIndices(const std::vector<int> &vals) const;
+    std::vector<int> findIndices(const std::vector<int> &vals, int m) const;
+private:
+    std::pair<int,std::vector<int>> compress(int m, const std::vector<int> &vals) const;
 };
 
 #endif

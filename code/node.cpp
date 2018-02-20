@@ -5,21 +5,19 @@
 #include <vector>
 #include <algorithm>
 
-using T = std::pair<int, int>;
+// Could replace FenwickTree here with another data structure
+// (e.g. a vEB tree can do operations in O(log log m))
+template<typename T>
+using DS = FenwickTree<T>;
 
-
-Node::Node(bool downQueries, int n):
+// All upcoming values are assumed to be in the range [1,m]
+Node::Node(bool downQueries, int m):
     dependencies(),
-    tree(),
+    tree(downQueries?static_cast<std::unique_ptr<Queriable<T>>>
+         (std::make_unique<DS<T>>(m, std::make_pair(-1, -1)))
+         :std::make_unique<Reverse<T,DS>>(m, std::make_pair(-1, -1))),
     previous(),
-    bestLength(-1) {
-    if(downQueries) {
-        tree = std::make_unique<FenwickTree<T>>(n, std::make_pair(-1, -1));
-    }
-    else {
-        tree = std::make_unique<Reverse<T,FenwickTree>>(n, std::make_pair(-1, -1));
-    }
-}
+    bestLength(-1) {}
 
 void Node::addDependency(const Node &other) {
     dependencies.push_back(&other);
