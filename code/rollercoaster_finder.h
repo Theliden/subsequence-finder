@@ -4,13 +4,10 @@
 #include "subsequence_finder.h"
 
 class RollercoasterFinder: public SubsequenceFinder {
+    static std::vector<bool> usesDownQueries(int k);
+    static std::vector<std::pair<int,int>> dependencies(int k);
 public:
-    RollercoasterFinder():
-        SubsequenceFinder(
-            {true, true, false, false},
-            {{0, 3}, {2, 1}, {1, 1}, {1, 0}, {3, 3}, {3, 2}},
-            {0, 2},
-            {0, 2}) {}
+    RollercoasterFinder(int k = 3);
 };
 
 #endif

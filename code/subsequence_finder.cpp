@@ -48,7 +48,9 @@ std::vector<int> SubsequenceFinder::findIndices(
         }
     }
     std::vector<int> result;
-    bestNode->reconstruct(bestIndex, result);
+    if(bestNode) {
+        bestNode->reconstruct(bestIndex, result);
+    }
     return result;
 }
 

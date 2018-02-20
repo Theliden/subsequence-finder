@@ -2,7 +2,7 @@ CXX = g++-5
 CXXFLAGS = -std=c++14 -Wall -Wextra -Wpedantic -MMD -g \
 -O2 -fsanitize=undefined,address
 
-EXEC = main
+EXEC = main.out
 SOURCES = $(shell find -name "*.cpp")
 OBJECTS = $(SOURCES:.cpp=.o)
 DEPENDS = ${SOURCES:.cpp=.d}

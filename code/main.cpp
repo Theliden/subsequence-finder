@@ -54,7 +54,8 @@ double expectedLength(int n, int times, const RollercoasterFinder &rf) {
 int main() {
     std::vector<std::pair<std::string,SubsequenceFinder>> tests{
         {"lis",LisFinder()},
-        {"rollercoaster",RollercoasterFinder()}};
+        {"rollercoaster",RollercoasterFinder()},
+        {"rc4",RollercoasterFinder(4)}};
     for(auto p:tests) {
         Tester t(p.first,p.second);
         if(!t.test()) return 1;
